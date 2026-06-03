@@ -57,17 +57,50 @@ html, body {
   color: #fff;
 }
 
-/* ── Horizontal panels ── */
+/* ── Gallery track (mode set by React: desktop = horizontal, mobile = vertical) ── */
+.gallery-track {
+  width: 100%;
+}
+.gallery-track.is-horizontal {
+  display: flex;
+  height: 100vh;
+  height: 100svh;
+  will-change: transform;
+}
+.gallery-track.is-vertical {
+  display: block;
+}
+
+/* ── Story panels ── */
 .h-panel {
   position: relative;
-  width: 100vw !important;
-  min-width: 100vw !important;
-  height: 100vh;
-  flex-shrink: 0 !important;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Horizontal: full-viewport columns laid out in a row */
+.is-horizontal .h-panel {
+  width: 100vw;
+  min-width: 100vw;
+  height: 100vh;
+  height: 100svh;
+  flex-shrink: 0;
   overflow: hidden;
+}
+
+/* Vertical: stacked, content-driven height with safe spacing under the navbar */
+.is-vertical .h-panel {
+  width: 100%;
+  min-height: 100svh;
+  height: auto;
+  padding: 6rem 0 4rem;
+  overflow: visible;
+}
+
+/* The decorative edge divider only makes sense in the horizontal row */
+.is-vertical .panel-divider {
+  display: none;
 }
 
 /* ── Scrollbar ── */
@@ -235,6 +268,15 @@ html, body {
 
 .service-modal::-webkit-scrollbar { width: 2px; }
 .service-modal::-webkit-scrollbar-thumb { background: rgba(209, 107, 40, 0.3); }
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeInModal {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
 
 /* ── Scroll hint ── */
 @keyframes scroll-hint {
