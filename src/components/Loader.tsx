@@ -11,19 +11,6 @@ export default function Loader() {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    // Already shown this session (reload / bfcache restore) — skip the long
-    // intro and fade straight through so the experience initialises cleanly.
-    if (sessionStorage.getItem("k8-loaded")) {
-      const tween = gsap.to(root.current, {
-        opacity: 0,
-        duration: 0.25,
-        onComplete: () => setDone(true),
-      });
-      return () => {
-        tween.kill();
-      };
-    }
-
     const lines = svgRef.current?.querySelectorAll("path, circle, line") ?? [];
     lines.forEach((el) => {
       const svgEl = el as SVGGeometryElement;
@@ -35,10 +22,7 @@ export default function Loader() {
     });
 
     const tl = gsap.timeline({
-      onComplete: () => {
-        sessionStorage.setItem("k8-loaded", "1");
-        setDone(true);
-      },
+      onComplete: () => setDone(true),
     });
 
     // Scene 1 — particle glow + quote

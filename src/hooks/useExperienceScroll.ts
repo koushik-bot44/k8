@@ -144,20 +144,15 @@ export function useExperienceScroll({
         const panels = gsap.utils.toArray<HTMLElement>(".h-panel");
         const total = panels.length;
 
+        // Natural touch scrolling on mobile/tablet — no snapping (it fights
+        // the finger and felt jarring). We only sample progress to keep the 3D
+        // rooms, dots and progress bar in sync.
         ScrollTrigger.create({
           trigger: wrapper,
           start: "top top",
           end: "bottom bottom",
           scrub: true,
           invalidateOnRefresh: true,
-          // Swipe once → snap to the next/previous room.
-          snap: {
-            snapTo: 1 / (total - 1),
-            duration: { min: 0.3, max: 0.7 },
-            delay: 0.04,
-            ease: "power2.inOut",
-            directional: true,
-          },
           onUpdate: (self) => syncProgress(self.progress, total),
         });
 

@@ -456,12 +456,22 @@ body {
   }
 }
 
+/* Anchored sections clear the fixed navbar when jumped to */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
 /* ── Mobile / tablet-portrait gallery polish ── */
 @media (max-width: 1023px) {
+  /* Each room is a full-height, centred section with safe spacing under the
+     navbar; tall panels simply grow and scroll naturally (no snapping).
+     Horizontal padding is handled inside the panel content (px-5). */
   .is-vertical .h-panel {
-    padding-top: 5.5rem;
-    padding-bottom: 3.5rem;
+    min-height: 100svh;
+    padding: 5.5rem 0 3.5rem;
+    text-align: center;
   }
+
   /* Nudge the room label clear of the nav dots */
   .room-label {
     bottom: 14px;
