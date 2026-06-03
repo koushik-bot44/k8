@@ -25,6 +25,16 @@ export default function TopNav({
     };
   }, [menuOpen]);
 
+  // Close the menu on Escape.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
   const go = (index: number) => {
     setMenuOpen(false);
     onNavigate(index);
@@ -34,12 +44,15 @@ export default function TopNav({
     <header>
       <nav
         className="fixed inset-x-0 top-0 flex items-center justify-between px-5 py-4 sm:px-8 sm:py-5"
-        style={{ zIndex: 95 }}
+        // Sits above the fullscreen menu while open so the close (✕) toggle is
+        // tappable; drops below the intro loader (z-100) when closed.
+        style={{ zIndex: menuOpen ? 120 : 95 }}
         aria-label="Primary"
       >
+        {/* Logo — hidden on phones (keeps the mobile bar clean) */}
         <button
           onClick={() => go(0)}
-          className="cursor-pointer border-none bg-transparent p-0"
+          className="hidden cursor-pointer border-none bg-transparent p-0 sm:block"
           aria-label="K8 Architecture Studio — go to start"
         >
           <Logo />
@@ -52,6 +65,7 @@ export default function TopNav({
               <button
                 onClick={() => go(i)}
                 className="relative cursor-pointer border-none bg-none py-1 transition-colors duration-300"
+                aria-current={activeSection === i ? "true" : undefined}
                 style={{
                   color:
                     activeSection === i ? "#D16B28" : "rgba(255,255,255,0.55)",
@@ -71,31 +85,31 @@ export default function TopNav({
           ))}
         </ul>
 
-        {/* Mobile hamburger */}
+        {/* Mobile hamburger / close toggle */}
         <button
-          className="flex flex-col gap-1.5 p-1 lg:hidden"
+          className="-mr-2 ml-auto flex flex-col gap-1.5 p-2 lg:hidden"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
-          style={{ zIndex: 110, background: "none", border: "none", cursor: "pointer" }}
+          style={{ background: "none", border: "none", cursor: "pointer" }}
         >
           <span
-            className="block h-px w-6 transition-all duration-300"
+            className="block h-0.5 w-7 rounded-full transition-all duration-300"
             style={{
               background: "#D16B28",
-              transform: menuOpen ? "translateY(4px) rotate(45deg)" : "none",
+              transform: menuOpen ? "translateY(8px) rotate(45deg)" : "none",
             }}
           />
           <span
-            className="block h-px w-6 transition-all duration-300"
+            className="block h-0.5 w-7 rounded-full transition-all duration-300"
             style={{ background: "#D16B28", opacity: menuOpen ? 0 : 1 }}
           />
           <span
-            className="block h-px w-6 transition-all duration-300"
+            className="block h-0.5 w-7 rounded-full transition-all duration-300"
             style={{
               background: "#D16B28",
-              transform: menuOpen ? "translateY(-4px) rotate(-45deg)" : "none",
+              transform: menuOpen ? "translateY(-8px) rotate(-45deg)" : "none",
             }}
           />
         </button>
@@ -106,10 +120,10 @@ export default function TopNav({
         id="mobile-menu"
         aria-label="Mobile navigation"
         inert={!menuOpen}
-        className="fixed inset-0 flex flex-col items-center justify-center gap-7 transition-all duration-500 lg:hidden"
+        className="fixed inset-0 flex flex-col items-center justify-center gap-5 overflow-y-auto px-8 py-20 transition-all duration-500 lg:hidden"
         style={{
           zIndex: 100,
-          background: "rgba(10,10,10,0.97)",
+          background: "rgba(10,10,10,0.98)",
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
           opacity: menuOpen ? 1 : 0,
@@ -117,6 +131,13 @@ export default function TopNav({
           transform: menuOpen ? "translateY(0)" : "translateY(-12px)",
         }}
       >
+        <span
+          className="mb-2 text-3xl font-black"
+          style={{ fontFamily: "var(--font-display)", color: "#fff" }}
+        >
+          K8<span style={{ color: "#D16B28" }}>.</span>
+        </span>
+
         {sections.map((s, i) => (
           <button
             key={s.id}
@@ -133,7 +154,8 @@ export default function TopNav({
               className="text-2xl font-black uppercase tracking-[0.15em]"
               style={{
                 fontFamily: "var(--font-display)",
-                color: activeSection === i ? "#D16B28" : "rgba(255,255,255,0.85)",
+                color:
+                  activeSection === i ? "#D16B28" : "rgba(255,255,255,0.85)",
               }}
             >
               {s.label}
