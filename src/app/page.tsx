@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 import Loader from "@/components/Loader";
@@ -32,6 +32,16 @@ const HouseScene = dynamic(() => import("@/components/HouseScene"), {
 export default function HomePage() {
   const loaderDone = useLoaderDone();
   const [selectedService, setSelectedService] = useState<number | null>(null);
+
+  // When restored from the back/forward cache, GSAP's ticker and ScrollTrigger
+  // pins are frozen mid-animation. A clean reload restarts the experience.
+  useEffect(() => {
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) window.location.reload();
+    };
+    window.addEventListener("pageshow", onPageShow);
+    return () => window.removeEventListener("pageshow", onPageShow);
+  }, []);
 
   const {
     wrapperRef,
@@ -70,23 +80,26 @@ export default function HomePage() {
       <RoomLabel room={SECTIONS[activeSection]?.room} />
       <ProgressBar barRef={progressBarRef} />
 
-      {/* Horizontal (desktop) / vertical (mobile) room walkthrough */}
-      <ExperienceGallery
-        wrapperRef={wrapperRef}
-        trackRef={trackRef}
-        isDesktop={isDesktop}
-        onOpenService={setSelectedService}
-      />
+      <main id="main-content">
+        {/* Horizontal (desktop) / vertical (mobile) room walkthrough */}
+        <ExperienceGallery
+          wrapperRef={wrapperRef}
+          trackRef={trackRef}
+          isDesktop={isDesktop}
+          onOpenService={setSelectedService}
+        />
 
-      {/* Vertical continuation */}
-      <AboutSection />
-      <FoundersSection />
-      <ProjectsSection />
-      <ProcessSection />
-      <InstagramSection />
-      <StatsSection />
-      <ServicesSection onOpenService={setSelectedService} />
-      <ContactSection />
+        {/* Vertical continuation */}
+        <AboutSection />
+        <FoundersSection />
+        <ProjectsSection />
+        <ProcessSection />
+        <InstagramSection />
+        <StatsSection />
+        <ServicesSection onOpenService={setSelectedService} />
+        <ContactSection />
+      </main>
+
       <SiteFooter />
 
       <ServiceModal

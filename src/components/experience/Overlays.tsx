@@ -1,7 +1,7 @@
 /** Fixed cinematic overlays layered above the 3D canvas and below the content. */
 export default function Overlays() {
   return (
-    <>
+    <div aria-hidden="true">
       {/* Directional gradients */}
       <div
         style={{
@@ -41,6 +41,6 @@ export default function Overlays() {
         className="blueprint-grid pointer-events-none fixed inset-0"
         style={{ zIndex: 4, opacity: 0.03 }}
       />
-    </>
+    </div>
   );
 }

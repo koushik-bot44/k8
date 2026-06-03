@@ -11,6 +11,7 @@ export default function ProgressBar({ barRef }: ProgressBarProps) {
       ref={barRef}
       className="scroll-progress"
       style={{ width: "0%", zIndex: 100 }}
+      aria-hidden="true"
     />
   );
 }

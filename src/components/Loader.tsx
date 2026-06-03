@@ -11,6 +11,19 @@ export default function Loader() {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
+    // Already shown this session (reload / bfcache restore) — skip the long
+    // intro and fade straight through so the experience initialises cleanly.
+    if (sessionStorage.getItem("k8-loaded")) {
+      const tween = gsap.to(root.current, {
+        opacity: 0,
+        duration: 0.25,
+        onComplete: () => setDone(true),
+      });
+      return () => {
+        tween.kill();
+      };
+    }
+
     const lines = svgRef.current?.querySelectorAll("path, circle, line") ?? [];
     lines.forEach((el) => {
       const svgEl = el as SVGGeometryElement;
@@ -22,7 +35,10 @@ export default function Loader() {
     });
 
     const tl = gsap.timeline({
-      onComplete: () => setDone(true),
+      onComplete: () => {
+        sessionStorage.setItem("k8-loaded", "1");
+        setDone(true);
+      },
     });
 
     // Scene 1 — particle glow + quote
@@ -96,6 +112,10 @@ export default function Loader() {
         "-=0.3"
       )
       .set(root.current, { display: "none" });
+
+    return () => {
+      tl.kill();
+    };
   }, []);
 
   if (done) return null;
@@ -104,6 +124,8 @@ export default function Loader() {
     <div
       ref={root}
       data-loader="true"
+      aria-hidden="true"
+      role="presentation"
       className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden"
       style={{ background: "#0D0D0D" }}
     >
@@ -155,14 +177,14 @@ export default function Loader() {
       </p>
 
       {/* K8 logo */}
-      <h1 className="relative z-10 flex gap-2 font-black leading-none" style={{ fontSize: "18vmin" }}>
+      <div className="relative z-10 flex gap-2 font-black leading-none" style={{ fontSize: "18vmin" }}>
         <span className="k8-letter inline-block" style={{ color: "#D16B28" }}>
           K
         </span>
         <span className="k8-letter inline-block" style={{ color: "#D16B28" }}>
           8
         </span>
-      </h1>
+      </div>
 
       {/* doorway portal */}
       <div

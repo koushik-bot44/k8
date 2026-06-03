@@ -12,7 +12,7 @@ export default function CourtyardPanel({ onOpenService }: CourtyardPanelProps) {
         The Open Courtyard
       </span>
 
-      <h1
+      <h2
         className="panel-content font-black"
         style={{
           fontSize: "clamp(2.5rem, 6vw, 5.5rem)",
@@ -24,7 +24,7 @@ export default function CourtyardPanel({ onOpenService }: CourtyardPanelProps) {
         Where Earth
         <br />
         Meets <span style={{ color: "#D16B28" }}>Sky</span>
-      </h1>
+      </h2>
 
       <p
         className="panel-content mt-5 max-w-lg text-sm leading-relaxed sm:mt-6"

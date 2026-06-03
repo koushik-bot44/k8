@@ -65,10 +65,10 @@ export default function EntrancePanel() {
       </div>
 
       <div
-        className="panel-content absolute bottom-8 left-1/2 flex -translate-x-1/2 items-center gap-3 sm:bottom-10"
+        className="panel-content absolute bottom-10 left-1/2 hidden -translate-x-1/2 items-center gap-3 lg:flex"
         style={{ color: "rgba(209,107,40,0.5)", zIndex: 10 }}
       >
-        <span className="text-[9px] uppercase tracking-[0.4em] sm:tracking-[0.5em]">
+        <span className="text-[9px] uppercase tracking-[0.5em]">
           Scroll to begin the journey
         </span>
         <span className="scroll-hint-arrow text-base">→</span>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Logo from "./Logo";
 import type { ExperienceSection } from "@/lib/experience";
 
 interface TopNavProps {
@@ -30,21 +31,19 @@ export default function TopNav({
   };
 
   return (
-    <>
+    <header>
       <nav
         className="fixed inset-x-0 top-0 flex items-center justify-between px-5 py-4 sm:px-8 sm:py-5"
         style={{ zIndex: 95 }}
+        aria-label="Primary"
       >
-        <span
-          className="text-2xl font-black tracking-tight"
-          style={{
-            fontFamily: "var(--font-display)",
-            color: "#fff",
-            textShadow: "0 2px 12px rgba(0,0,0,0.9)",
-          }}
+        <button
+          onClick={() => go(0)}
+          className="cursor-pointer border-none bg-transparent p-0"
+          aria-label="K8 Architecture Studio — go to start"
         >
-          K8<span style={{ color: "#D16B28" }}>.</span>
-        </span>
+          <Logo />
+        </button>
 
         {/* Desktop links */}
         <ul className="hidden gap-8 text-xs uppercase tracking-[0.3em] lg:flex">
@@ -78,6 +77,7 @@ export default function TopNav({
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
           style={{ zIndex: 110, background: "none", border: "none", cursor: "pointer" }}
         >
           <span
@@ -103,6 +103,9 @@ export default function TopNav({
 
       {/* Mobile fullscreen menu */}
       <div
+        id="mobile-menu"
+        aria-label="Mobile navigation"
+        inert={!menuOpen}
         className="fixed inset-0 flex flex-col items-center justify-center gap-7 transition-all duration-500 lg:hidden"
         style={{
           zIndex: 100,
@@ -151,6 +154,6 @@ export default function TopNav({
           Get in Touch
         </a>
       </div>
-    </>
+    </header>
   );
 }

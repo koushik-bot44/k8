@@ -13,7 +13,7 @@ export default function SanctumPanel() {
         The Inner Sanctum
       </span>
 
-      <h1
+      <h2
         className="panel-content font-black"
         style={{
           fontSize: "clamp(3rem, 8vw, 8rem)",
@@ -25,7 +25,7 @@ export default function SanctumPanel() {
         Built For
         <br />
         <span style={{ color: "#D16B28" }}>Eternity</span>
-      </h1>
+      </h2>
 
       <div className="panel-content ornament-line mt-8 w-32" />
 

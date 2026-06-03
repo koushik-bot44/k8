@@ -14,7 +14,7 @@ export default function CorridorPanel() {
         The Grand Corridor
       </span>
 
-      <h1
+      <h2
         className="panel-content font-black"
         style={{
           fontSize: "clamp(2.5rem, 7vw, 7rem)",
@@ -26,7 +26,7 @@ export default function CorridorPanel() {
         The Path
         <br />
         <span style={{ color: "#D16B28" }}>Reveals</span>
-      </h1>
+      </h2>
 
       <p
         className="panel-content mt-6 max-w-lg text-sm italic leading-relaxed sm:mt-7"

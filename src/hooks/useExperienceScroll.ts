@@ -78,10 +78,18 @@ export function useExperienceScroll({
           trigger: wrapper,
           start: "top top",
           end: () => `+=${track.scrollWidth - window.innerWidth}`,
-          scrub: 1.8,
+          scrub: 1.2,
           pin: track,
           anticipatePin: 1,
           invalidateOnRefresh: true,
+          // One scroll gesture settles on the next/previous room.
+          snap: {
+            snapTo: 1 / (total - 1),
+            duration: { min: 0.3, max: 0.7 },
+            delay: 0.04,
+            ease: "power2.inOut",
+            directional: true,
+          },
           onUpdate: (self) => {
             gsap.set(track, {
               x: -self.progress * (track.scrollWidth - window.innerWidth),
@@ -142,6 +150,14 @@ export function useExperienceScroll({
           end: "bottom bottom",
           scrub: true,
           invalidateOnRefresh: true,
+          // Swipe once → snap to the next/previous room.
+          snap: {
+            snapTo: 1 / (total - 1),
+            duration: { min: 0.3, max: 0.7 },
+            delay: 0.04,
+            ease: "power2.inOut",
+            directional: true,
+          },
           onUpdate: (self) => syncProgress(self.progress, total),
         });
 

@@ -71,9 +71,16 @@ export default function HouseScene({
     if (!canvas) return;
     const ctx = canvas.getContext("2d")!;
 
+    // Cap the device pixel ratio — uncapped DPR on high-density phones creates
+    // huge canvases and tanks performance for no visible gain.
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
     const resize = () => {
-      canvas.width = window.innerWidth * window.devicePixelRatio;
-      canvas.height = window.innerHeight * window.devicePixelRatio;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
       canvas.style.width = window.innerWidth + "px";
       canvas.style.height = window.innerHeight + "px";
     };
@@ -199,12 +206,12 @@ export default function HouseScene({
       ctx.fillStyle = vGrad;
       ctx.fillRect(0, 0, cw, ch);
 
-      // Film grain (subtle)
-      if (Math.random() > 0.5) {
+      // Film grain (subtle) — skipped for reduced-motion; throttled otherwise.
+      if (!reducedMotion && Math.floor(t * 60) % 3 === 0) {
         ctx.save();
         ctx.globalAlpha = 0.02;
         ctx.globalCompositeOperation = "overlay";
-        for (let g = 0; g < 400; g++) {
+        for (let g = 0; g < 180; g++) {
           const gx = Math.random() * cw;
           const gy = Math.random() * ch;
           const gs = Math.random() * 2;
@@ -229,6 +236,8 @@ export default function HouseScene({
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
+      role="presentation"
       style={{
         position: "fixed",
         inset: 0,

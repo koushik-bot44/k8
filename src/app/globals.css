@@ -48,8 +48,43 @@ html {
 html, body {
   background: var(--ink);
   color: #fff;
-  cursor: none;
   overflow-x: hidden;
+}
+
+/* Styles applied via CSS (not inline on <body>) to avoid hydration mismatches
+   from browser extensions that rewrite inline style attributes. */
+body {
+  cursor: none;
+  font-family: var(--font-sans);
+}
+
+/* ── Skip link (accessibility) ── */
+.skip-link {
+  position: fixed;
+  top: -120px;
+  left: 16px;
+  z-index: 300;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: #D16B28;
+  color: #0A0A0A;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  transition: top 0.25s ease;
+}
+.skip-link:focus {
+  top: 16px;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ── Visible focus styles for keyboard users ── */
+:focus-visible {
+  outline: 2px solid #D16B28;
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 ::selection {
@@ -418,6 +453,39 @@ html, body {
 @media (pointer: coarse) {
   html, body {
     cursor: auto !important;
+  }
+}
+
+/* ── Mobile / tablet-portrait gallery polish ── */
+@media (max-width: 1023px) {
+  .is-vertical .h-panel {
+    padding-top: 5.5rem;
+    padding-bottom: 3.5rem;
+  }
+  /* Nudge the room label clear of the nav dots */
+  .room-label {
+    bottom: 14px;
+    right: 14px;
+    font-size: 8px;
+  }
+  .section-dots {
+    right: 12px;
+    gap: 12px;
+  }
+}
+
+/* ── Respect reduced-motion preferences (accessibility) ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .scroll-hint-arrow {
+    animation: none !important;
   }
 }
 

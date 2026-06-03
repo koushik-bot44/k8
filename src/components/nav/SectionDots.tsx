@@ -13,7 +13,11 @@ export default function SectionDots({
   onNavigate,
 }: SectionDotsProps) {
   return (
-    <div className="section-dots" style={{ zIndex: 90 }}>
+    <nav
+      className="section-dots"
+      style={{ zIndex: 90 }}
+      aria-label="Room navigation"
+    >
       {sections.map((s, i) => (
         <button
           key={s.id}
@@ -21,8 +25,9 @@ export default function SectionDots({
           data-label={s.label}
           onClick={() => onNavigate(i)}
           aria-label={`Go to ${s.label}`}
+          aria-current={activeSection === i ? "true" : undefined}
         />
       ))}
-    </div>
+    </nav>
   );
 }

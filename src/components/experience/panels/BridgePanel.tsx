@@ -13,7 +13,7 @@ export default function BridgePanel() {
         The Floating Bridge
       </span>
 
-      <h1
+      <h2
         className="panel-content font-black"
         style={{
           fontSize: "clamp(2.5rem, 7vw, 6.5rem)",
@@ -29,7 +29,7 @@ export default function BridgePanel() {
         <span className="text-stroke" style={{ textShadow: "none" }}>
           Worlds
         </span>
-      </h1>
+      </h2>
 
       <p
         className="panel-content mt-6 max-w-lg text-sm leading-relaxed sm:mt-7"
