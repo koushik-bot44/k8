@@ -29,8 +29,8 @@ export default function AboutSection() {
           <ScrollReveal delay={100}>
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
               <Image
-                src="/images/heritage-bg.jpg"
-                alt="K8 Architecture Studio"
+                src="/images/hyderabad-about.jpg"
+                alt="Aerial drone view of Hyderabad's HITEC City at golden hour — Cyber Towers, metro and flyover, home of K8 Architecture Studio"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"

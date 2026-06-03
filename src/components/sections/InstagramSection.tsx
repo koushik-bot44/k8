@@ -3,54 +3,12 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { studioInfo } from "@/lib/team";
 
 const GALLERY = [
-  {
-    src: "/images/gallery/old-architecture.jpg",
-    span: "md:col-span-2 md:row-span-2",
-    aspect: "aspect-square",
-    label: "Hawa Mahal — Jaipur Heritage",
-  },
-  {
-    src: "/images/gallery/temple-golden.jpg",
-    span: "",
-    aspect: "aspect-square",
-    label: "Temple Architecture",
-  },
-  {
-    src: "/images/gallery/home-interior.jpg",
-    span: "",
-    aspect: "aspect-square",
-    label: "Contemporary Interior",
-  },
-  {
-    src: "/images/gallery/temple-pillars.jpg",
-    span: "",
-    aspect: "aspect-[3/4]",
-    label: "Ancient Temple Pillars",
-  },
-  {
-    src: "/images/gallery/interior-courtyard.jpg",
-    span: "",
-    aspect: "aspect-square",
-    label: "Courtyard Living",
-  },
-  {
-    src: "/images/gallery/heritage-stepwell.jpg",
-    span: "md:col-span-2",
-    aspect: "aspect-[2/1]",
-    label: "India Gate — Delhi",
-  },
-  {
-    src: "/images/gallery/temple-taj.jpg",
-    span: "",
-    aspect: "aspect-square",
-    label: "Taj Mahal — Agra",
-  },
-  {
-    src: "/images/gallery/temple-carved.jpg",
-    span: "",
-    aspect: "aspect-[3/4]",
-    label: "Carved Temple Details",
-  },
+  { src: "/images/interiors/livinghall.jpg", label: "Living Hall" },
+  { src: "/images/interiors/tvunit.jpg", label: "TV Unit & Media Wall" },
+  { src: "/images/interiors/kitchen.jpg", label: "Modular Kitchen" },
+  { src: "/images/interiors/bedroom.jpg", label: "Bedroom Suite" },
+  { src: "/images/interiors/dinning.jpg", label: "Dining Space" },
+  { src: "/images/interiors/wardrope.jpg", label: "Wardrobe & Joinery" },
 ];
 
 export default function InstagramSection() {
@@ -78,23 +36,21 @@ export default function InstagramSection() {
               className="mx-auto mt-4 max-w-lg text-xs md:text-sm"
               style={{ color: "rgba(255,255,255,0.4)" }}
             >
-              Glimpses from our design process, site visits, material
-              explorations, and the moments where architecture comes alive.
+              A glimpse of our interior design work — living halls, kitchens,
+              bedrooms and bespoke joinery brought to life.
             </p>
           </div>
         </ScrollReveal>
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
           {GALLERY.map((item, i) => (
-            <ScrollReveal key={item.src} delay={i * 60} className={item.span}>
-              <div
-                className={`group relative ${item.aspect} cursor-pointer overflow-hidden rounded-lg`}
-              >
+            <ScrollReveal key={item.src} delay={i * 60}>
+              <div className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-lg">
                 <Image
                   src={item.src}
-                  alt={item.label}
+                  alt={`${item.label} — interior design by K8 Architecture Studio`}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  sizes="(max-width: 768px) 50vw, 25vw"
+                  sizes="(max-width: 768px) 50vw, 33vw"
                 />
                 <div
                   className="absolute inset-0 flex items-end p-4 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
