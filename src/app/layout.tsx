@@ -84,12 +84,11 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
-    apple: [{ url: "/icon.svg" }],
+  // Favicon is provided by the file-convention icon at src/app/icon.svg.
+  appleWebApp: {
+    capable: true,
+    title: "K8 Architecture Studio",
+    statusBarStyle: "black-translucent",
   },
 };
 

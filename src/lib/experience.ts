@@ -6,9 +6,9 @@ export interface ExperienceSection {
 }
 
 export const SECTIONS: ExperienceSection[] = [
-  { id: "entrance", label: "The Entrance", room: "Entrance Gallery" },
-  { id: "bridge", label: "The Bridge", room: "Floating Walkway" },
-  { id: "courtyard", label: "The Courtyard", room: "Open Courtyard" },
-  { id: "corridor", label: "The Corridor", room: "Grand Corridor" },
-  { id: "sanctum", label: "The Sanctum", room: "Inner Sanctum" },
+  { id: "home", label: "Home", room: "Welcome" },
+  { id: "about", label: "About", room: "The Studio" },
+  { id: "services", label: "Services", room: "What We Do" },
+  { id: "projects", label: "Projects", room: "Selected Works" },
+  { id: "contact", label: "Contact", room: "Get in Touch" },
 ];

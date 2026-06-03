@@ -2,11 +2,11 @@
 
 import type { RefObject } from "react";
 import { cn } from "@/lib/utils";
-import EntrancePanel from "./panels/EntrancePanel";
-import BridgePanel from "./panels/BridgePanel";
-import CourtyardPanel from "./panels/CourtyardPanel";
-import CorridorPanel from "./panels/CorridorPanel";
-import SanctumPanel from "./panels/SanctumPanel";
+import HomePanel from "./panels/HomePanel";
+import AboutPanel from "./panels/AboutPanel";
+import ServicesPanel from "./panels/ServicesPanel";
+import ProjectsPanel from "./panels/ProjectsPanel";
+import ContactPanel from "./panels/ContactPanel";
 
 interface ExperienceGalleryProps {
   wrapperRef: RefObject<HTMLDivElement | null>;
@@ -35,11 +35,11 @@ export default function ExperienceGallery({
           isDesktop ? "is-horizontal" : "is-vertical"
         )}
       >
-        <EntrancePanel />
-        <BridgePanel />
-        <CourtyardPanel onOpenService={onOpenService} />
-        <CorridorPanel />
-        <SanctumPanel />
+        <HomePanel />
+        <AboutPanel />
+        <ServicesPanel onOpenService={onOpenService} />
+        <ProjectsPanel />
+        <ContactPanel />
       </div>
     </div>
   );

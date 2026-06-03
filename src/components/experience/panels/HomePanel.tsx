@@ -1,16 +1,17 @@
 import PanelShell from "./PanelShell";
+import { studioInfo } from "@/lib/team";
 
 const STATS = [
-  { num: "5", label: "Architectural Spaces" },
-  { num: "∞", label: "Perspectives" },
-  { num: "1", label: "Journey" },
+  { num: `${studioInfo.stats.projects}+`, label: "Projects" },
+  { num: `${studioInfo.stats.yearsExperience}+`, label: "Years" },
+  { num: `${studioInfo.stats.teamSize}`, label: "Team" },
 ];
 
-export default function EntrancePanel() {
+export default function HomePanel() {
   return (
     <PanelShell id="panel-0">
       <span className="panel-content chapter-marker mb-5 sm:mb-6">
-        The Entrance Gallery
+        K8 Architecture Studio
       </span>
 
       <h1
@@ -36,9 +37,9 @@ export default function EntrancePanel() {
           textShadow: "0 2px 12px rgba(0,0,0,0.8)",
         }}
       >
-        Step into a living exhibition of architecture — where terracotta walls
-        breathe with centuries of wisdom, and skylights carve rivers of golden
-        light through silence.
+        An architecture, landscape and interior design studio in Hyderabad —
+        where terracotta walls breathe with centuries of wisdom, and skylights
+        carve rivers of golden light through silence.
       </p>
 
       <div className="panel-content mt-8 flex flex-wrap justify-center gap-8 sm:mt-10 sm:gap-14">
@@ -69,7 +70,7 @@ export default function EntrancePanel() {
         style={{ color: "rgba(209,107,40,0.5)", zIndex: 10 }}
       >
         <span className="text-[9px] uppercase tracking-[0.5em]">
-          Scroll to begin the journey
+          Scroll to explore
         </span>
         <span className="scroll-hint-arrow text-base">→</span>
       </div>

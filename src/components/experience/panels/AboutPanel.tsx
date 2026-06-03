@@ -1,16 +1,16 @@
 import PanelShell from "./PanelShell";
 
-const PILLARS = [
+const INFLUENCES = [
   { icon: "◇", title: "Tadao Ando", desc: "Concrete minimalism" },
   { icon: "△", title: "Peter Zumthor", desc: "Material atmosphere" },
   { icon: "○", title: "Indian Haveli", desc: "Carved stone craft" },
 ];
 
-export default function BridgePanel() {
+export default function AboutPanel() {
   return (
     <PanelShell id="panel-1" contentClassName="mx-auto max-w-4xl">
       <span className="panel-content chapter-marker mb-5 sm:mb-6">
-        The Floating Bridge
+        About the Studio
       </span>
 
       <h2
@@ -22,12 +22,12 @@ export default function BridgePanel() {
           textShadow: "0 4px 50px rgba(0,0,0,0.9)",
         }}
       >
-        Suspended
+        Architecture
         <br />
-        Between
+        Rooted in
         <br />
         <span className="text-stroke" style={{ textShadow: "none" }}>
-          Worlds
+          Context
         </span>
       </h2>
 
@@ -38,13 +38,14 @@ export default function BridgePanel() {
           textShadow: "0 2px 12px rgba(0,0,0,0.8)",
         }}
       >
-        A wooden bridge hovers above still water, connecting the modern and the
-        ancient. Grand staircases ascend through volumes of light and shadow,
-        while hidden courtyards breathe through carved openings.
+        Founded in Hyderabad, K8 blends the spatial wisdom of traditional Indian
+        architecture — courtyards, jali screens, water channels — with the
+        precision and restraint of contemporary practice. Every project honours
+        its land, climate, and culture.
       </p>
 
       <div className="panel-content mt-8 grid w-full max-w-md grid-cols-1 gap-3 sm:mt-10 sm:flex sm:max-w-none sm:flex-wrap sm:justify-center sm:gap-4">
-        {PILLARS.map((c) => (
+        {INFLUENCES.map((c) => (
           <div
             key={c.title}
             className="glass rounded-xl px-6 py-5 text-center sm:min-w-[150px]"

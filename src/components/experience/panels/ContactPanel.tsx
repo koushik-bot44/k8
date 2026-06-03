@@ -1,30 +1,31 @@
 import PanelShell from "./PanelShell";
+import { studioInfo } from "@/lib/team";
 
-const FOOTER_ITEMS = [
+const DETAILS = [
   { label: "Studio", value: "Hyderabad, Telangana" },
-  { label: "Phone", value: "+91 83418 54527" },
+  { label: "Phone", value: studioInfo.phone },
   { label: "Hours", value: "Mon–Fri 10–18 IST" },
 ];
 
-export default function SanctumPanel() {
+export default function ContactPanel() {
   return (
     <PanelShell id="panel-4" showDivider={false}>
       <span className="panel-content chapter-marker mb-5 sm:mb-6">
-        The Inner Sanctum
+        Get in Touch
       </span>
 
       <h2
         className="panel-content font-black"
         style={{
-          fontSize: "clamp(3rem, 8vw, 8rem)",
+          fontSize: "clamp(2.6rem, 8vw, 7rem)",
           fontFamily: "var(--font-display)",
           lineHeight: 0.9,
           textShadow: "0 4px 50px rgba(0,0,0,0.9)",
         }}
       >
-        Built For
+        Let&apos;s Create
         <br />
-        <span style={{ color: "#D16B28" }}>Eternity</span>
+        Something <span style={{ color: "#D16B28" }}>Timeless</span>
       </h2>
 
       <div className="panel-content ornament-line mt-8 w-32" />
@@ -36,21 +37,13 @@ export default function SanctumPanel() {
           textShadow: "0 2px 15px rgba(0,0,0,0.7)",
         }}
       >
-        &ldquo;Architecture should speak of its time and place,
-        <br />
-        but yearn for timelessness.&rdquo;
-      </p>
-
-      <p
-        className="panel-content mt-1 text-[10px] uppercase tracking-[0.4em]"
-        style={{ color: "rgba(209,107,40,0.5)" }}
-      >
-        — Frank Gehry
+        Every great project begins with a conversation. Tell us about your
+        vision.
       </p>
 
       <div className="panel-content mt-10 flex flex-col items-center gap-4 sm:mt-12">
         <a
-          href="mailto:nikhithajinnapally@k8architecturestudio.com"
+          href={`mailto:${studioInfo.email}`}
           className="group relative overflow-hidden rounded-full px-8 py-3.5 text-white transition-all duration-500 sm:px-10"
           style={{
             border: "1px solid rgba(209,107,40,0.4)",
@@ -72,16 +65,17 @@ export default function SanctumPanel() {
             Begin Your Commission
           </span>
         </a>
-        <span
-          className="break-all text-center text-[9px] uppercase tracking-[0.35em] sm:tracking-[0.45em]"
-          style={{ color: "rgba(255,255,255,0.25)" }}
+        <a
+          href={`mailto:${studioInfo.email}`}
+          className="break-all text-center text-[9px] uppercase tracking-[0.35em] transition-colors duration-300 sm:tracking-[0.45em]"
+          style={{ color: "rgba(255,255,255,0.35)" }}
         >
-          nikhithajinnapally@k8architecturestudio.com
-        </span>
+          {studioInfo.email}
+        </a>
       </div>
 
       <div className="panel-content mt-10 grid max-w-[500px] grid-cols-3 gap-6 text-center sm:mt-12 sm:gap-8">
-        {FOOTER_ITEMS.map((item) => (
+        {DETAILS.map((item) => (
           <div key={item.label}>
             <h4
               className="mb-1 text-[9px] uppercase tracking-[0.3em] sm:tracking-[0.4em]"
@@ -89,7 +83,7 @@ export default function SanctumPanel() {
             >
               {item.label}
             </h4>
-            <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.4)" }}>
+            <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.45)" }}>
               {item.value}
             </p>
           </div>
@@ -98,10 +92,10 @@ export default function SanctumPanel() {
 
       <p
         className="panel-content mt-8 text-[8px] uppercase tracking-[0.35em] sm:tracking-[0.4em]"
-        style={{ color: "rgba(255,255,255,0.15)" }}
+        style={{ color: "rgba(255,255,255,0.18)" }}
       >
-        K8 Architecture © {new Date().getFullYear()} — A Timeless Architectural
-        Experience
+        K8 Architecture © {new Date().getFullYear()} — Architecture · Landscape ·
+        Interiors
       </p>
     </PanelShell>
   );

@@ -1,15 +1,15 @@
 import PanelShell from "./PanelShell";
 import { services } from "@/lib/services";
 
-interface CourtyardPanelProps {
+interface ServicesPanelProps {
   onOpenService: (index: number) => void;
 }
 
-export default function CourtyardPanel({ onOpenService }: CourtyardPanelProps) {
+export default function ServicesPanel({ onOpenService }: ServicesPanelProps) {
   return (
     <PanelShell id="panel-2" contentClassName="mx-auto max-w-5xl">
       <span className="panel-content chapter-marker mb-5 sm:mb-6">
-        The Open Courtyard
+        What We Do
       </span>
 
       <h2
@@ -21,9 +21,9 @@ export default function CourtyardPanel({ onOpenService }: CourtyardPanelProps) {
           textShadow: "0 4px 50px rgba(0,0,0,0.9)",
         }}
       >
-        Where Earth
+        Services Crafted
         <br />
-        Meets <span style={{ color: "#D16B28" }}>Sky</span>
+        For <span style={{ color: "#D16B28" }}>You</span>
       </h2>
 
       <p
@@ -33,9 +33,9 @@ export default function CourtyardPanel({ onOpenService }: CourtyardPanelProps) {
           textShadow: "0 2px 12px rgba(0,0,0,0.8)",
         }}
       >
-        Trees grow from polished stone, reflections double the architecture, and
-        jali screens cast geometric shadow patterns that shift with the sun — a
-        space that breathes.
+        From ground-up architecture to interiors, landscapes and bespoke detail
+        — a single studio shaping every layer of how you live. Tap a service to
+        explore.
       </p>
 
       <div className="panel-content mt-7 grid w-full max-w-[780px] grid-cols-2 gap-3 sm:mt-8 sm:grid-cols-3">
